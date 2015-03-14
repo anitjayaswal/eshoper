@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Product Details | E-Shopper</title>
+    <link href="{{STATIC_URL}}css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{STATIC_URL}}css/font-awesome.min.css" rel="stylesheet">
+    <link href="{{STATIC_URL}}css/prettyPhoto.css" rel="stylesheet">
+    <link href="{{STATIC_URL}}css/price-range.css" rel="stylesheet">
+    <link href="{{STATIC_URL}}css/animate.css" rel="stylesheet">
+	<link href="{{STATIC_URL}}css/main.css" rel="stylesheet">
+	<link href="{{STATIC_URL}}css/responsive.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->       
+    <link rel="shortcut icon" href="{{STATIC_URL}}images/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{STATIC_URL}}images/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{STATIC_URL}}images/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{STATIC_URL}}images/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="{{STATIC_URL}}images/ico/apple-touch-icon-57-precomposed.png">
+</head><!--/head-->
+
+<body>
+	<header id="header"><!--header-->
+		<div class="header_top"><!--header_top-->
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="contactinfo">
+							<ul class="nav nav-pills">
+								<li><a href="#"><i class="fa fa-phone"></i> +2 95 01 88 821</a></li>
+								<li><a href="#"><i class="fa fa-envelope"></i> info@domain.com</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="social-icons pull-right">
+							<ul class="nav navbar-nav">
+								<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+								<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+								<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+								<li>
+									<a href="#"><i class="fa fa-youtube"></i></a>
+								</li>
+								<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--/header_top-->
+		
+		<div class="header-middle"><!--header-middle-->
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="logo pull-left">
+							<a href="/home/"><img alt="" src="{{STATIC_URL}}images/home/logo.png"></a>
+						</div>
+						
+					</div>
+					<div class="col-sm-8">
+						<div class="shop-menu pull-right">
+							<ul class="nav navbar-nav">
+								<li><a href="#"><i class="fa fa-user"></i> Account</a></li>
+								<li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
+								
+								
+								<li><a href="/loginform/"><i class="fa fa-lock"></i> Login</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--/header-middle-->
+	
+           
+    </div>
+	</header><br/><br/>
+	
+	
+		<div class="container">
+			<div class="row">
+				
+				
+				<div class="col-sm-12 padding-right">
+					<div class="product-details"><!--product-details-->
+						<div class="col-sm-5">
+							<div class="view-product">
+								{% if data.image_status == "YES" %}
+								<img class="img-responsive" style="margin: 0 auto;" src="{{STATIC_URL}}img_dir/{{data.sort_image_link}}" alt="" />
+								
+								{%else%}
+
+								   <img class="img-responsive" style="margin: 0 auto;" src="{{STATIC_URL}}img_dir/no_images.jpeg" alt="" />
+
+								{%endif%}   
+							</div>
+							
+
+						</div>
+						<div class="col-sm-7"> 
+							<div class="product-information"><!--/product-information-->
+								<!--<img  src="{{STATIC_URL}}images/product-details/new.jpg" class="newarrival" alt="" />-->
+								<h2>{{data.title}} by {{data.brand}}</h2> 
+								
+								<img src="{{STATIC_URL}}images/product-details/rating.png" alt="" />
+								
+								 <div class="offer-price offer-price-lowest-online-price w100 pvm fl">
+                                    <div class="fl">
+                                    	<hr style="border-top: dotted 1px; margin:0px;" />
+                                        <span class="mrs offer-price-desc">
+                                           Lowest online price:
+                                       </span>
+                    
+                                           {% if data.selling_price != data.mrp%}
+                                            <span class="offer-price-rupeeSymbol rupeeCurrency"></span><span class="strikePrice">&nbsp;&nbsp;<i class="fa fa-inr">&nbsp;</i> <del>{{data.mrp}}</del></span> &nbsp;&nbsp;
+                                           {%endif%}
+                                           
+                                           <span class="offer-price-lowest-price mrs"><font color="orange"><i class="fa fa-inr">&nbsp;</i> {{data.selling_price}}</font></span>
+                                           {% if data.selling_price != data.mrp%}
+                                              &nbsp;({{data.discount}}%&nbsp;off)
+                                            {%endif%}  
+                                           <hr style="border-top: dotted 1px; margin:0px;" />
+                        
+                        
+                                   </div>
+
+                
+
+
+                                 </div>
+									<div class="description">								
+									{{data.description|safe}}
+
+                                      <hr style="border-top: dotted 1px;" />
+
+                                    </div>
+                                 
+                                <div class="seller-option"> 
+                                 <table class="outdent cl" cellpadding="10">
+                                 	<tr>
+                                    <th class="merchant-column">
+                                    <span> Seller</span>
+                                    </th>
+                                    <th class="merchantRating-column">
+                                    <span> Rating</span>
+                                    </th>
+
+                                    <th class="pay-column">
+                                    <span> Price</span>
+                                    </th>
+
+                                    <th class="options true">
+                                    <span> Buying Option</span>
+                                    </th>
+
+                                    </tr>
+                                    {%for data1 in all_data%}
+                                   <tr>
+                                   	
+                                   <td class="seller">{{data1.seller}}</td>
+                                   	<td class="Rating">****</td>
+                                   	<td class="price"><i class="fa fa-inr">&nbsp;</i>{{data1.selling_price}}</td>
+                                   	<td class="bying-option">
+                                   			
+								<a class="btn btn-fefault cart" href="{{data1.pro_link}}" target="_blank"> 
+										<i class="fa fa-shopping-cart"></i>
+								         shopping to {{data1.seller}}
+								     </a>    
+								  
+								   
+								 <td>
+
+                               </tr>
+                               {%endfor%}
+
+                                 </table> 
+
+                                 </div>  
+								
+								   
+								
+
+								
+									
+							</div><!--/product-information-->
+						</div>
+					</div><!--/product-details-->
+					
+					
+							{% if data.product_spec == "None"%}
+							    <div class="description">								
+									{{data.description|safe}}
+
+                                      
+
+                                    </div>
+                               {%else%}  
+
+                                    <div class="category-tab shop-details-tab"><!--category-tab-->
+						<div class="product-specification">   
+						           {{data.product_spec |safe}}
+						{% endif %}
+						</div><br/><br/>
+					<!--/category-tab-->
+					
+					<div class="recommended_items"><!--recommended_items-->
+						<h2 class="title text-center">recommended items</h2>
+						
+						<div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
+							<div class="carousel-inner">
+								{%for data in liked%}
+								<div class="item active">	
+									<div class="col-sm-4">
+										<div class="product-image-wrapper">
+											<div class="single-products">
+												<div class="productinfo text-center">
+													<a class="block" href="{{data.title}}/{{data.product_id}}" target="_blank">
+													<img width="100" height="100" src="{{STATIC_URL}}img_dir/{{data.sort_image_link}}" alt="" />
+													<h2><i class="fa fa-inr">&nbsp;</i>{{data.selling_price}}</h2>
+													<p>{{data.title}}</p>
+												</a>
+													<a href="{{data.pro_link}}" class="btn btn-default add-to-cart" target="_blank"><i class="fa fa-shopping-cart" ></i>visit {{data.seller}}</a>
+												</div>
+												
+											</div>
+										</div>
+									</div>
+									
+								</div>
+
+								<div class="item">	
+									<div class="col-sm-4">
+										<div class="product-image-wrapper">
+											<div class="single-products">
+												<div class="productinfo text-center">
+												  <a class="block" href="{{data.title}}/{{data.product_id}}" target="_blank">
+													<img width="100" height="100" src="{{STATIC_URL}}img_dir/{{data.sort_image_link}}" alt="" />
+													<h2><i class="fa fa-inr">&nbsp;</i>{{data.selling_price}}</h2>
+													<p>{{data.title}}</p>
+												</a>
+													<a href="{{data.pro_link}}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart" target="_blank"></i>visit {{data.seller}}</a>
+												</div>
+												
+											</div>
+										</div>
+									</div>
+									
+								</div>
+								{%endfor%}
+							</div>
+							 <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
+								<i class="fa fa-angle-left"></i>
+							  </a>
+							  <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
+								<i class="fa fa-angle-right"></i>
+							  </a>			
+						</div>
+					</div><!--/recommended_items-->
+					
+					
+				</div>
+			</div>
+		</div>
+	
+	
+	<footer id="footer"><!--Footer-->
+		
+		<div class="footer-widget">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-2">
+						<div class="single-widget">
+							<h2>Service</h2>
+							<ul class="nav nav-pills nav-stacked">
+								<li><a href="#">Online Help</a></li>
+								<li><a href="/contact-us form/">Contact Us</a></li>
+								
+								<li><a href="#">FAQ’s</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-sm-2">
+						<div class="single-widget">
+							<h2>Quock Shop</h2>
+							<ul class="nav nav-pills nav-stacked">
+								<li><a href="#">Mobiles</a></li>
+								<li><a href="#">Books</a></li>
+								
+							</ul>
+						</div>
+					</div>
+					<div class="col-sm-2">
+						<div class="single-widget">
+							<h2>Policies</h2>
+							<ul class="nav nav-pills nav-stacked">
+								<li><a href="#">Terms of Use</a></li>
+								
+							</ul>
+						</div>
+					</div>
+					<div class="col-sm-2">
+						<div class="single-widget">
+							<h2>About Shopper</h2>
+							<ul class="nav nav-pills nav-stacked">
+								<li><a href="#">Company Information</a></li>
+								<li><a href="#">Careers</a></li>
+								
+								<li><a href="#">Affillate Program</a></li>
+								<li><a href="#">Copyright</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="single-widget">
+							<h2>About Shopper</h2>
+							<form class="searchform" action="#">
+								<input type="text" placeholder="Your email address">
+								<button class="btn btn-default" type="submit"><i class="fa fa-arrow-circle-o-right"></i></button>
+								<p>Get the most recent updates from <br>our site and be updated your self...</p>
+							</form>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		
+		<div class="footer-bottom">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-12">
+					<p class="col-sm-9 pull-left">Copyright &copy; 2015 E-SHOPPER Inc. All rights reserved.</p>
+					<p class="col-sm-3 pull-right">Developed by <span><a href="#" target="_blank">Anit Jayaswal</a></span></p>
+				</div>
+			  </div>
+			</div>
+		</div>
+		
+	</footer>
+  
+    <script src="{{STATIC_URL}}js/jquery.js"></script>
+	<script src="{{STATIC_URL}}js/price-range.js"></script>
+    <script src="{{STATIC_URL}}js/jquery.scrollUp.min.js"></script>
+	<script src="{{STATIC_URL}}js/bootstrap.min.js"></script>
+    <script src="{{STATIC_URL}}js/jquery.prettyPhoto.js"></script>
+    <script src="{{STATIC_URL}}js/main.js"></script>
+	
+</body>
+</html>
