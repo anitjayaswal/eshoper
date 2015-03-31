@@ -40,23 +40,44 @@ $(function() {
 });
 
 
-$(document).ready(function() {
-        $("label").click(function(){
-            var favorite = [];
-            $.each($("input[name='brand']:checked"), function(){            
-                favorite.push($(this).val());
-            });
-            //alert(favorite);
-            //data ={'brand':favorite};
-            //alert(data);
+$(document).ready(function(){
+	
+	var favorite = [];
+        $('input[type="checkbox"]').click(function(){
+        	
+            if($(this).prop("checked") == true){
+            	favorite.push($(this).val());
+                
+            }
+            else if($(this).prop("checked") == false){
+                favorite.pop($(this).val());
+                
+            }
 
-             $.get("/mobiles/"+favorite+"", function(all_data) {
+            
+
+            $.get("/mobiles/"+favorite+"", function(all_data) {
              	//alert(all_data);
              	$("#replace").html(all_data)
                  
-             });     
+             });
         });
+
+         var favorite = new Array();
+         $.each($("input[name='brand[]']:checked"), function() {
+          favorite.push($(this).val());
+  
+        });
+
+        $.get("/mobiles/"+favorite+"", function(all_data) {
+             	//alert(all_data);
+             	$("#replace").html(all_data)
+                 
+             });
+
     });
+
+
 
 </script>
 
@@ -165,7 +186,7 @@ $(document).ready(function() {
 								<ul class="nav nav-pills nav-stacked" style="overflow-y: scroll;width: 200px;height: 300px;">
 
 									{%for b in data%}
-									<li> <label><input type="checkbox" value="{{b.brand}}" id = "checkbox_id"name="brand"/>{{b.brand}}</li></label>
+									<li> <label><input type="checkbox" value="{{b.brand}}" id = "checkbox_id"name="brand[]"/>{{b.brand}}</li></label>
 								     {% endfor%}	
 								</ul>
 
