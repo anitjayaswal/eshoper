@@ -1,0 +1,78 @@
+<header id="header"><!--header-->
+		<div class="header_top"><!--header_top-->
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="contactinfo">
+							<ul class="nav nav-pills">
+								<li><a href="#"><i class="fa fa-phone"></i> +91-9456914108</a></li>
+								<li><a href="#"><i class="fa fa-envelope"></i> info@domain.com</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="social-icons pull-right">
+							<ul class="nav navbar-nav">
+								<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+								<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+								<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+								<li>
+									<a href="#"><i class="fa fa-youtube"></i></a>
+								</li>
+								<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--/header_top-->
+		
+		<div class="header-middle"><!--header-middle-->
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="logo pull-left">
+							<a href="/home/"><img alt="" src="{{STATIC_URL}}images/home/logo.png"></a>
+						</div>
+						
+					</div>
+					<div class="col-sm-8">
+						<div class="shop-menu pull-right">
+							<ul class="nav navbar-nav">
+
+								{%if request.session.user_name %}
+								<li><a href="#"><i class="fa fa-user"></i> {{request.session.user_name}}</a></li>
+								{%else%}
+								<li><a href="#"><i class="fa fa-user"></i> Account</a></li>
+								{%endif%}
+								<li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
+								
+								{%if request.session.user_name %}
+                                   <li><a href="/logout/"><i class="fa fa-lock"></i>Logout</a></li>
+                               
+                                 {%else%}
+								<li><a href="/loginform/"><i class="fa fa-lock"></i> Login</a></li>
+
+								{%endif%}
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--/header-middle-->
+	
+		
+                 
+             
+              
+            <div class="search-widget" style="text-align: center;">
+                     
+                    <div style="float:center;" class="search_bar">
+               <form action="/mobileSearch/" method="get" name="myform"  >
+        
+                  
+                 <input type="text" name="search" style="width:450;height:30;" placeholder="Search for mobiles" id="autocomplete_search"  required />
+                       <input type="submit" name="submit" value="search">
+             </form> 
+         </div>
+     </header>

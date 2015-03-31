@@ -24,3 +24,12 @@ class mobiles(models.Model):
      status = models.CharField(max_length=100)
      image_status = models.CharField(max_length=10,default='NO')
      discount = models.IntegerField()
+
+
+class User(models.Model):
+    name = models.CharField(max_length=100)
+    user_email = models.EmailField(max_length=200,unique=True)
+    user_password = models.CharField(max_length=100)
+
+    
+

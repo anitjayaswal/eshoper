@@ -22,9 +22,52 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{STATIC_URL}}images/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{STATIC_URL}}images/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="{{STATIC_URL}}images/ico/apple-touch-icon-57-precomposed.png">
+
+
+    <script>
+$(function() {
+  $("#autocomplete_search_brand").autocomplete({
+    source: "/autocompleteModel_brand/",
+    minLength: 2,
+  });
+});
+
+
+
+$(function() {
+  $("#autocomplete_search").autocomplete({
+    source: "/autocompleteModel/",
+    minLength: 2,
+  });
+});
+
+
+$(document).ready(function() {
+        $("label").click(function(){
+            var favorite = [];
+            $.each($("input[name='brand']:checked"), function(){            
+                favorite.push($(this).val());
+            });
+            //alert(favorite);
+            //data ={'brand':favorite};
+            //alert(data);
+
+             $.get("/product/mobiles/"+favorite+"", function(all_data) {
+             	//alert(all_data);
+             	$("#replace").html(all_data)
+                 
+             });     
+        });
+    });
+
+</script>
+
+
 </head><!--/head-->
 
 <body>
+	
+
 	<header id="header"><!--header-->
 		<div class="header_top"><!--header_top-->
 			<div class="container">
@@ -66,11 +109,21 @@
 					<div class="col-sm-8">
 						<div class="shop-menu pull-right">
 							<ul class="nav navbar-nav">
+
+								{%if request.session.user_name %}
+								<li><a href="#"><i class="fa fa-user"></i> {{request.session.user_name}}</a></li>
+								{%else%}
 								<li><a href="#"><i class="fa fa-user"></i> Account</a></li>
+								{%endif%}
 								<li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
 								
-								
+								{%if request.session.user_name %}
+                                   <li><a href="/logout/"><i class="fa fa-lock"></i>Logout</a></li>
+                               
+                                 {%else%}
 								<li><a href="/loginform/"><i class="fa fa-lock"></i> Login</a></li>
+
+								{%endif%}
 							</ul>
 						</div>
 					</div>
@@ -78,8 +131,6 @@
 			</div>
 		</div><!--/header-middle-->
 	
-           
-    </div>
 	</header><br/><br/>
 	
 	
@@ -269,80 +320,7 @@
 		</div>
 	
 	
-	<footer id="footer"><!--Footer-->
-		
-		<div class="footer-widget">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-2">
-						<div class="single-widget">
-							<h2>Service</h2>
-							<ul class="nav nav-pills nav-stacked">
-								<li><a href="#">Online Help</a></li>
-								<li><a href="/contact-us form/">Contact Us</a></li>
-								
-								<li><a href="#">FAQ’s</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-sm-2">
-						<div class="single-widget">
-							<h2>Quock Shop</h2>
-							<ul class="nav nav-pills nav-stacked">
-								<li><a href="#">Mobiles</a></li>
-								<li><a href="#">Books</a></li>
-								
-							</ul>
-						</div>
-					</div>
-					<div class="col-sm-2">
-						<div class="single-widget">
-							<h2>Policies</h2>
-							<ul class="nav nav-pills nav-stacked">
-								<li><a href="#">Terms of Use</a></li>
-								
-							</ul>
-						</div>
-					</div>
-					<div class="col-sm-2">
-						<div class="single-widget">
-							<h2>About Shopper</h2>
-							<ul class="nav nav-pills nav-stacked">
-								<li><a href="#">Company Information</a></li>
-								<li><a href="#">Careers</a></li>
-								
-								<li><a href="#">Affillate Program</a></li>
-								<li><a href="#">Copyright</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-sm-4">
-						<div class="single-widget">
-							<h2>About Shopper</h2>
-							<form class="searchform" action="#">
-								<input type="text" placeholder="Your email address">
-								<button class="btn btn-default" type="submit"><i class="fa fa-arrow-circle-o-right"></i></button>
-								<p>Get the most recent updates from <br>our site and be updated your self...</p>
-							</form>
-						</div>
-					</div>
-					
-				</div>
-			</div>
-		</div>
-		
-		<div class="footer-bottom">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-12">
-					<p class="col-sm-9 pull-left">Copyright &copy; 2015 E-SHOPPER Inc. All rights reserved.</p>
-					<p class="col-sm-3 pull-right">Developed by <span><a href="#" target="_blank">Anit Jayaswal</a></span></p>
-				</div>
-			  </div>
-			</div>
-		</div>
-		
-	</footer>
+	{%include "footer.html"%}
   
     <script src="{{STATIC_URL}}js/jquery.js"></script>
 	<script src="{{STATIC_URL}}js/price-range.js"></script>

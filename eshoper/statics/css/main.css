@@ -2592,3 +2592,49 @@ h2.title {
   color:#777777;
   cursor:not-allowed;
 }
+
+
+.positionRelative {
+    position: relative;
+}
+
+select, textarea, input[type="text"], input[type="password"] {
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    color: #363636;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.filterSearchBox {
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2) inset;
+    color: #2e2e2e;
+    font-size: 13px;
+    height: 36px;
+    margin: 5px 0;
+    padding: 0 25px 0 5px;
+    width: 200px;
+}
+input, button, select, textarea {
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 20px;
+    padding: 4px 6px;
+}
+
+element.style {
+    display: none;
+}
+
+.crossFilter {
+    cursor: pointer;
+    display: none;
+    height: 14px;
+    position: absolute;
+    right: 8px;
+    top: 12px;
+    width: 14px;
+}
+.crossFilter, i.icon-clear, i.icon-clearAll {
+    background: url("/img/metroUI/filters_sprite.png") no-repeat scroll 0 -35px rgba(0, 0, 0, 0);
+}
