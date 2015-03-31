@@ -35,25 +35,30 @@ def contact_us(request):
 
 def mobiles_data(request,brand):
      
-
+    
     rand_mobi = mobiles.objects.values_list('pk',flat=True)
     select_mobi = random.sample(rand_mobi,3)
     most_liked = mobiles.objects.filter(pk__in =select_mobi)
     
     if request.is_ajax() :
-         
+
+        #return HttpResponse(brand)
+
         brand_list =[]
-        brand1 = brand.replace("/","").split(",")
-        #return HttpResponse(brand1)
-        for b in brand1:
-            brand_list.append(str(b.strip()))
+        #brand_list.append(brand)
+
+        brand1 = brand.split(",")
         #return HttpResponse(brand_list)
-        if (len(brand_list)>=1):
-             all_data = mobiles.objects.filter(brand__in=brand_list)
-             first_price=all_data.order_by('selling_price')[0].selling_price
-                  
-             #return HttpResponse(len(all_data))
-             if(len(all_data)>0):
+        
+        
+
+
+        for b in brand1:
+
+            brand_list.append(str(b.strip()))
+        #return HttpResponse(len(brand_list)) 
+        all_data = mobiles.objects.filter(brand__in=brand_list)
+        if(len(all_data)>0):
             #results = [ x.brand for x in model_results ]
             #return HttpResponse(results)
                  all_data = sorted(all_data, key=lambda x: random.random())
@@ -72,7 +77,7 @@ def mobiles_data(request,brand):
                  
                  return render(request,"checkbox_data.html",{'all_data':mobiles_data,'liked':most_liked})
                  
-             else:
+        else:
                  all_data = mobiles.objects.filter(Q(brand='samsung')| Q(brand='htc')|Q(brand='apple')|Q(brand='micromax'))
                  all_data = sorted(all_data, key=lambda x: random.random())
                  paginator = Paginator(all_data, 21)
@@ -87,9 +92,9 @@ def mobiles_data(request,brand):
     # If page is out of range (e.g. 9999), deliver last page of results.
                      mobiles_data = paginator.page(paginator.num_pages)
                  return render(request,"checkbox_data.html",{'all_data':mobiles_data,'liked':most_liked})
-             
+                
     else:
-
+            
              rand_mobi = mobiles.objects.values_list('pk',flat=True)
              select_mobi = random.sample(rand_mobi,3)
              most_liked = mobiles.objects.filter(pk__in =select_mobi)
@@ -101,8 +106,6 @@ def mobiles_data(request,brand):
     
              #return HttpResponse(request.build_absolute_uri())
              all_data = mobiles.objects.filter(Q(brand='samsung')| Q(brand='htc')|Q(brand='apple')|Q(brand='micromax'))
-
-             first_price=all_data.order_by('selling_price')[0].selling_price
              
              all_data = sorted(all_data, key=lambda x: random.random())
 
@@ -121,9 +124,7 @@ def mobiles_data(request,brand):
     # If page is out of range (e.g. 9999), deliver last page of results.
                  mobiles_data = paginator.page(paginator.num_pages)
     
-             return render(request,"mobiles.html",{'data':brands,'all_data':mobiles_data,'liked':most_liked,'first_price':first_price})    
-
-        
+             return render(request,"mobiles.html",{'data':brands,'all_data':mobiles_data,'liked':most_liked})    
 def details(request,details):
     #return HttpResponse(details)
     pro_id = str(details)
